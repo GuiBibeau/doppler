@@ -9,6 +9,9 @@
   "peerDependencies": {
     "typescript": "^5"
   },
+  "scripts": {
+    "binance-oracle": "bun examples/binance-oracle.ts"
+  },
   "dependencies": {
     "@solana-program/compute-budget": "^0.10.0",
     "@solana-program/memo": "^0.8.0",
