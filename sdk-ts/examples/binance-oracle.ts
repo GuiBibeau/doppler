@@ -7,9 +7,7 @@ import {
 } from "@solana/kit";
 import type { Address } from "@solana/addresses";
 import { DopplerTransactionBuilder } from "../index.ts";
-import { readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
-import { dirname, resolve } from "node:path";
+import { resolve } from "path";
 
 type OracleConfig = {
   doppler_program_id: string;
@@ -22,14 +20,12 @@ const RPC_URL =
 const WS_URL =
   process.env.WS_URL ??
   RPC_URL.replace("https://", "wss://").replace("http://", "ws://");
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 const ADMIN_KEYPAIR_PATH =
   process.env.ADMIN_KEYPAIR_PATH ??
-  resolve(__dirname, "../../deployments/devnet/master-keypair.json");
+  resolve("../../deployments/devnet/master-keypair.json");
 const DEPLOYMENT_CONFIG_PATH =
   process.env.DEPLOYMENT_CONFIG_PATH ??
-  resolve(__dirname, "../../deployments/devnet.json");
+  resolve("../../deployments/devnet.json");
 const BINANCE_API_URL =
   process.env.BINANCE_API_URL ?? "https://api.binance.com";
 const POLL_INTERVAL_MS = Number.parseInt(
@@ -51,13 +47,13 @@ const sleep = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
 async function loadKeypair(path: string) {
-  const raw = await readFile(path, "utf8");
+  const raw = await Bun.file(path).text();
   const parsed = JSON.parse(raw) as number[];
   return new Uint8Array(parsed);
 }
 
 async function loadDeployment(path: string): Promise<OracleConfig> {
-  const raw = await readFile(path, "utf8");
+  const raw = await Bun.file(path).text();
   return JSON.parse(raw) as OracleConfig;
 }
 
