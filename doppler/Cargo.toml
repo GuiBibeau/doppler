@@ -16,3 +16,6 @@ std = []
 unexpected_cfgs = { level = "warn", check-cfg = [
     'cfg(target_os, values("solana"))',
 ] }
+
+[build-dependencies]
+bs58 = "0.4"

@@ -30,6 +30,7 @@ solana-sdk-ids = { version = "2.2.1" }
 solana-signer = { version = "2.2.1" }
 solana-system-interface = { version = "1.0.0" }
 solana-transaction = { version = "2.2.3" }
+solana-sdk = { version = "2.3.0" }
 
 [profile.release]
 opt-level = 3

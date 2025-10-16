@@ -8,7 +8,12 @@ license-file = { workspace = true }
 edition = { workspace = true }
 version = { workspace = true }
 
+[features]
+default = []
+bootstrap = ["anyhow", "solana-client", "solana-sdk"]
+
 [dependencies]
+doppler = { workspace = true }
 solana-compute-budget-interface = { workspace = true }
 solana-hash = { workspace = true }
 solana-instruction = { workspace = true }
@@ -16,6 +21,9 @@ solana-keypair = { workspace = true }
 solana-pubkey = { workspace = true }
 solana-signer = { workspace = true }
 solana-transaction = { workspace = true, features = ["bincode"] }
+anyhow = { version = "1", optional = true }
+solana-client = { workspace = true, optional = true }
+solana-sdk = { workspace = true, optional = true }
 
 [dev-dependencies]
 doppler-program = { workspace = true }

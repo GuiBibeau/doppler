@@ -1,6 +1,14 @@
 #![cfg_attr(target_os = "solana", feature(asm_experimental_arch))]
 #![cfg_attr(not(feature = "std"), no_std)]
 
+mod generated_constants {
+    include!(concat!(env!("OUT_DIR"), "/doppler_constants.rs"));
+}
+
+pub use generated_constants::{
+    ADMIN_BASE58, ADMIN_BYTES, PROGRAM_ID_BASE58, PROGRAM_ID_BYTES,
+};
+
 mod admin;
 mod oracle;
 pub mod panic_handler;
